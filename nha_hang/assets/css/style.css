@@ -1,0 +1,2332 @@
+/* Font Faces - Inter */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuOKfMZg.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf") format('truetype');
+}
+
+/* Reset và Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Màu sắc chủ đạo - Phong cách cơm quê ấm áp */
+    --primary-color: #c97d1a;        /* Màu vàng cam - màu cơm, gạo */
+    --primary-dark: #a06614;        /* Màu vàng cam đậm */
+    --secondary-color: #8b4513;     /* Màu nâu đất */
+    --accent-color: #d4a574;        /* Màu be nhẹ */
+    --dark-color: #3e2723;          /* Màu nâu đậm */
+    --light-color: #faf7f2;         /* Màu kem nhẹ */
+    --success-color: #5c8a3a;       /* Màu xanh lá cây */
+    --danger-color: #c7431f;        /* Màu đỏ gạch */
+    --warning-color: #e6a800;       /* Màu vàng */
+    --info-color: #6b5b73;          /* Màu tím nhẹ */
+    --text-color: #2c1810;          /* Màu nâu đậm cho text */
+    --text-light: #6b4e3d;          /* Màu nâu nhẹ */
+    --border-color: #e0d5c7;        /* Màu be nhẹ cho border */
+    --shadow: 0 2px 15px rgba(62, 39, 35, 0.1);
+    --shadow-lg: 0 5px 25px rgba(62, 39, 35, 0.15);
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background-color: var(--light-color);
+    line-height: 1.7;
+}
+
+/* Background chỉ áp dụng cho trang có hero section */
+body:has(.hero) {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(201, 125, 26, 0.2) 100%),
+                url('../images/quan-com-duong-bau7077cr3-copy-20231110174138-bzrrb.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Fallback cho trình duyệt không hỗ trợ :has() */
+body.home-page {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(201, 125, 26, 0.2) 100%),
+                url('../images/quan-com-duong-bau7077cr3-copy-20231110174138-bzrrb.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Top Bar */
+.top-bar {
+    background: var(--dark-color);
+    color: white;
+    padding: 8px 0;
+    font-size: 14px;
+    display: none; /* Ẩn top-bar */
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.top-bar-left {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.top-bar-left span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.top-bar-left i {
+    color: var(--primary-color);
+}
+
+.btn-reservation {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-reservation:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Navigation */
+.navbar {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(62, 39, 35, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.nav-brand a {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.3s;
+}
+
+.nav-brand a:hover {
+    transform: scale(1.05);
+}
+
+.brand-logo {
+    height: 60px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+    transition: filter 0.3s;
+}
+
+.nav-brand a:hover .brand-logo {
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+}
+
+.nav-brand i {
+    font-size: 32px;
+    color: var(--secondary-color);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.brand-name {
+    font-size: 22px;
+    color: var(--primary-color);
+}
+
+.brand-subtitle {
+    font-size: 16px;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-menu > li {
+    position: relative;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-menu a:hover {
+    color: var(--accent-color);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.nav-menu a i {
+    font-size: 12px;
+    transition: transform 0.3s;
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+    position: relative;
+}
+
+/* Hiển thị dropdown - xử lý bởi display và opacity trong .dropdown-menu */
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown.active .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+
+/* Xoay mũi tên khi dropdown mở (hover hoặc active) */
+.nav-dropdown:hover > a i.fa-chevron-down,
+.nav-dropdown.active > a i.fa-chevron-down,
+.nav-dropdown:focus-within > a i.fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background: rgba(44, 24, 16, 0.98);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 12px 0;
+    min-width: 220px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    list-style: none;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+/* Hiển thị dropdown với animation */
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown.active .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.25s ease;
+    text-shadow: none;
+}
+
+.dropdown-menu a i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    color: var(--accent-color);
+    transition: all 0.25s ease;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(201, 125, 26, 0.25);
+    color: white;
+    padding-left: 24px;
+}
+
+.dropdown-menu a:hover i {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Cart Badge */
+.cart-badge {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 5px;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Section */
+.hero {
+    background: transparent;
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    display: none; /* Ẩn tất cả nội dung chữ trong hero */
+}
+
+.hero-text {
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    color: white;
+}
+
+.hero-slogan {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: var(--accent-color);
+    font-style: italic;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.hero-description {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: rgba(255,255,255,0.95);
+}
+
+.hero-subdescription {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 35px;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+/* Menu collapse/expand */
+.menu-section { 
+    margin: 30px 0; 
+    padding: 18px; 
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 220px;
+    border-radius: 10px; 
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(224, 213, 199, 0.4);
+}
+.menu-section-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px }
+.menu-section-header h2 { font-size:22px; color:var(--primary-dark); }
+.menu-section-actions { display:flex; gap:10px; align-items:center }
+.menu-section .item-count { color:var(--text-light); font-size:14px }
+.btn-outline { background:transparent; border:1px solid var(--primary-color); color:var(--primary-color); padding:8px 12px; border-radius:8px; cursor:pointer }
+.menu-grid.collapsed { display:none; }
+.menu-grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+.menu-item { display:flex; gap:12px; padding:12px; border-radius:8px; align-items:flex-start; background: linear-gradient(180deg,#fff,#fbfaf8);} 
+.menu-item-image { width:64px; height:64px; background:var(--accent-color); color:white; display:flex; align-items:center; justify-content:center; border-radius:8px; }
+.menu-item-image img { width:100%; height:100%; object-fit:cover; display:block; border-radius:6px; }
+.menu-item-content h3 { margin-bottom:6px; font-size:16px }
+.menu-item-footer { display:flex; gap:12px; align-items:center; margin-top:8px }
+.price { font-weight:700; color:var(--primary-dark) }
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: var(--primary-color);
+    border-color: white;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-info {
+    background: var(--info-color);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+/* Sections */
+section {
+    padding: 60px 20px;
+}
+
+.features {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(250, 247, 242, 0.95), rgba(250, 247, 242, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 400px;
+    background-attachment: fixed;
+}
+
+.popular-dishes {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--light-color);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Intro Section */
+.intro-section {
+    padding: 0;
+    background: var(--dark-color);
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,120 Q300,60 600,80 T1200,60 L1200,120 Z" fill="white"/></svg>') no-repeat top;
+    background-size: cover;
+    z-index: 1;
+}
+
+.intro-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 Q300,60 600,40 T1200,60 L1200,0 Z" fill="white"/></svg>') no-repeat bottom;
+    background-size: cover;
+    z-index: 1;
+}
+
+.intro-wrapper {
+    display: grid;
+    grid-template-columns: 0.9fr 1.3fr 2.5fr 1.3fr 0.9fr;
+    gap: 20px;
+    align-items: center;
+    padding: 60px 20px;
+    position: relative;
+    z-index: 2;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+
+.intro-image {
+    position: relative;
+}
+
+.intro-food-img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+    border: 10px solid white;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+.intro-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 3px solid rgba(201, 125, 26, 0.5);
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.intro-content {
+    text-align: left;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.intro-main-title {
+    font-size: 38px;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+}
+
+.intro-divider {
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.intro-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.intro-btn {
+    margin-top: 15px;
+    padding: 10px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.intro-art-left,
+.intro-art-right,
+.intro-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.intro-art-left {
+    order: 1;
+    align-items: flex-end;
+}
+
+.intro-image {
+    order: 2;
+}
+
+.intro-content {
+    order: 3;
+}
+
+.intro-illustration {
+    order: 4;
+}
+
+.intro-illustration .intro-art-img {
+    max-width: 160px;
+    max-height: 350px;
+    object-fit: contain;
+}
+
+.intro-art-right {
+    order: 5;
+    align-items: flex-end;
+}
+
+.intro-art-img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.intro-art-left .intro-art-img,
+.intro-art-right .intro-art-img {
+    max-width: 110px;
+    max-height: 350px;
+    object-fit: contain;
+}
+
+.intro-art-left:hover .intro-art-img,
+.intro-art-right:hover .intro-art-img,
+.intro-illustration:hover .intro-art-img {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.section-title {
+    font-size: 36px;
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.92)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 200px;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(224, 213, 199, 0.3);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: var(--shadow);
+}
+
+.feature-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+.feature-card i {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+/* Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Dishes Carousel */
+.dishes-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 50px;
+}
+
+.dishes-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    gap: 20px;
+    width: 100%;
+}
+
+.dishes-carousel .dish-card {
+    min-width: calc(33.333% - 14px) !important;
+    max-width: calc(33.333% - 14px) !important;
+    width: calc(33.333% - 14px) !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: block;
+    border: 1px solid rgba(224, 213, 199, 0.4);
+}
+
+.dishes-carousel .dish-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(139, 69, 19, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: var(--primary-color);
+    transform: scale(1.3);
+}
+
+.carousel-dot:hover {
+    background: rgba(139, 69, 19, 0.6);
+}
+
+.menu-item, .dish-card {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(224, 213, 199, 0.3);
+}
+
+.menu-item:hover, .dish-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.menu-item-image, .dish-image {
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 64px;
+}
+
+.menu-item-content, .dish-info {
+    padding: 20px;
+}
+
+.menu-item-content h3, .dish-info h3 {
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.dish-category {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.dish-description {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.menu-item-footer, .dish-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.price, .dish-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Forms */
+/* Auth Page Background */
+body:has(.auth-container) {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.15) 0%, rgba(201, 125, 26, 0.15) 100%),
+                url('../man-chung-20231130124006-c_f1t.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.auth-container {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.auth-card {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.96)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 300px;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    border: 2px solid rgba(201, 125, 26, 0.2);
+}
+
+/* Auth Tabs */
+.auth-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    background: var(--light-color);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 15px 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.auth-tab:hover {
+    color: var(--primary-color);
+    background: rgba(201, 125, 26, 0.1);
+}
+
+.auth-tab.active {
+    color: var(--primary-color);
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 200px;
+    border-bottom: 3px solid var(--primary-color);
+    font-weight: 600;
+}
+
+.auth-tab i {
+    font-size: 18px;
+}
+
+/* Auth Forms */
+.auth-form {
+    display: none;
+    padding: 40px;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--dark-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.required {
+    color: var(--danger-color);
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.auth-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--light-color);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert-error {
+    background: #fee;
+    color: var(--danger-color);
+    border: 1px solid #fcc;
+}
+
+.alert-success {
+    background: #efe;
+    color: var(--success-color);
+    border: 1px solid #cfc;
+}
+
+/* Cart */
+.cart-info {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.cart-count {
+    background: var(--danger-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.cart-table {
+    width: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(224, 213, 199, 0.4);
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-table th {
+    background: var(--dark-color);
+    color: white;
+    font-weight: 600;
+}
+
+.cart-table tfoot {
+    font-weight: bold;
+}
+
+.cart-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.empty-cart, .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 300px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 2px dashed rgba(201, 125, 26, 0.3);
+}
+
+.empty-cart i, .empty-state i {
+    font-size: 64px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+/* Checkout */
+.checkout-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.checkout-form-section,
+.checkout-summary {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 250px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(224, 213, 199, 0.4);
+}
+
+.order-summary {
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid var(--dark-color);
+    text-align: right;
+    font-size: 20px;
+}
+
+/* Reservation */
+.reservation-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.reservation-form,
+.reservation-info {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 250px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(224, 213, 199, 0.4);
+}
+
+.info-box {
+    background: var(--light-color);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.info-box ul {
+    list-style-position: inside;
+    margin-top: 10px;
+}
+
+.info-box li {
+    margin-bottom: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* Orders */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 250px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(224, 213, 199, 0.4);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order-items ul {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.order-items li {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--light-color);
+}
+
+.order-footer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.order-total {
+    text-align: right;
+    font-size: 18px;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status-preparing {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-ready {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-available {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Admin Styles */
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.admin-header {
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, var(--dark-color) 0%, rgba(62, 39, 35, 0.9) 100%);
+    padding: 30px 35px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.admin-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.admin-header-left h1 {
+    color: white;
+    font-size: 32px;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-header-left h1 i {
+    color: var(--primary-color);
+}
+
+.admin-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    margin: 0;
+}
+
+.admin-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.admin-welcome {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+}
+
+.admin-welcome strong {
+    color: var(--primary-color);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 200px;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border: 1px solid rgba(224, 213, 199, 0.3);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 25px 20px;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.05) 100%);
+}
+
+.stat-card-blue .stat-card-header {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.15) 0%, rgba(0, 123, 255, 0.05) 100%);
+}
+
+.stat-card-orange .stat-card-header {
+    background: linear-gradient(135deg, rgba(201, 125, 26, 0.15) 0%, rgba(201, 125, 26, 0.05) 100%);
+}
+
+.stat-card-green .stat-card-header {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.15) 0%, rgba(40, 167, 69, 0.05) 100%);
+}
+
+.stat-card-purple .stat-card-header {
+    background: linear-gradient(135deg, rgba(111, 66, 193, 0.15) 0%, rgba(111, 66, 193, 0.05) 100%);
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-icon.blue {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.stat-icon.orange {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #b8751a 100%);
+}
+
+.stat-icon.green {
+    background: linear-gradient(135deg, var(--success-color) 0%, #218838 100%);
+}
+
+.stat-icon.purple {
+    background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+}
+
+.stat-trend {
+    font-size: 24px;
+    opacity: 0.3;
+    color: var(--text-color);
+}
+
+.stat-info {
+    padding: 0 25px 25px;
+}
+
+.stat-info h3 {
+    font-size: 36px;
+    margin: 0 0 8px 0;
+    color: var(--dark-color);
+    font-weight: 700;
+}
+
+.stat-info p {
+    color: var(--text-light);
+    font-size: 15px;
+    margin: 0 0 15px 0;
+    font-weight: 500;
+}
+
+.stat-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.stat-detail-item {
+    font-size: 13px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-detail-item i {
+    color: var(--primary-color);
+    width: 16px;
+}
+
+.stat-detail-item strong {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.admin-section {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 220px;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.admin-section-enhanced {
+    border: 1px solid var(--border-color);
+}
+
+.admin-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, var(--dark-color) 0%, rgba(62, 39, 35, 0.95) 100%);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.admin-section-header h2 {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-section-header h2 i {
+    color: var(--primary-color);
+}
+
+.btn-view-all {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+    padding: 8px 15px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-view-all:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.admin-table-wrapper {
+    padding: 0;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table thead th {
+    background: var(--light-color);
+    color: var(--dark-color);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-table tbody tr {
+    transition: background 0.2s;
+}
+
+.admin-table tbody tr:hover {
+    background: var(--light-color);
+}
+
+.empty-table-message {
+    text-align: center;
+    padding: 40px 20px !important;
+    color: var(--text-light);
+}
+
+.empty-table-message i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    opacity: 0.3;
+}
+
+.empty-table-message p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.admin-menu {
+    margin-top: 50px;
+}
+
+.admin-menu-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.admin-menu-header h2 {
+    font-size: 28px;
+    color: var(--dark-color);
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.admin-menu-header h2 i {
+    color: var(--primary-color);
+}
+
+.admin-menu-subtitle {
+    color: var(--text-light);
+    font-size: 15px;
+    margin: 0;
+}
+
+.admin-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.admin-menu-item {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 200px;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.admin-menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+}
+
+.admin-menu-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.admin-menu-item-blue .admin-menu-icon {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.admin-menu-item-orange .admin-menu-icon {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #b8751a 100%);
+}
+
+.admin-menu-item-green .admin-menu-icon {
+    background: linear-gradient(135deg, var(--success-color) 0%, #218838 100%);
+}
+
+.admin-menu-item-purple .admin-menu-icon {
+    background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+}
+
+.admin-menu-item-brown .admin-menu-icon {
+    background: linear-gradient(135deg, var(--dark-color) 0%, rgba(62, 39, 35, 0.9) 100%);
+}
+
+.admin-menu-item-primary .admin-menu-icon {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #c97d1a 100%);
+}
+
+.admin-menu-item-info .admin-menu-icon {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+}
+
+.admin-menu-item-dark .admin-menu-icon {
+    background: linear-gradient(135deg, #343a40 0%, #23272b 100%);
+}
+
+.admin-menu-content {
+    flex: 1;
+    padding: 25px 0;
+}
+
+.admin-menu-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.admin-menu-content p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.admin-menu-arrow {
+    padding: 0 25px;
+    color: var(--text-light);
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.admin-menu-item:hover .admin-menu-arrow {
+    transform: translateX(5px);
+    color: var(--primary-color);
+}
+
+.form-inline {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: end;
+}
+
+.form-inline .form-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.qty-input {
+    width: 60px;
+    padding: 6px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border-color);
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(250, 247, 242, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 150px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.qty-btn:hover {
+    background: linear-gradient(rgba(201, 125, 26, 0.1), rgba(201, 125, 26, 0.05)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 150px;
+    border-color: var(--primary-color);
+}
+
+.add-to-cart-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Success Page */
+.success-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 250px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 2px solid rgba(92, 138, 58, 0.2);
+}
+
+.success-icon {
+    font-size: 80px;
+    color: var(--success-color);
+    margin-bottom: 20px;
+}
+
+.success-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.order-details {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.order-info-table {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.order-info-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order-items-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.order-items-table th,
+.order-items-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order-items-table th {
+    background: var(--dark-color);
+    color: white;
+}
+
+.detail-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detail-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.96)),
+                url('../images/man-chung-20231130124006-c_f1t.png');
+    background-size: 250px;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    border: 2px solid rgba(201, 125, 26, 0.2);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+.close:hover {
+    color: var(--dark-color);
+}
+
+/* Footer */
+.footer {
+    background: var(--dark-color);
+    color: white;
+    padding: 50px 20px 20px;
+    margin-top: 80px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-slogan {
+    font-size: 16px;
+    color: var(--accent-color);
+    font-style: italic;
+    margin-bottom: 15px !important;
+}
+
+.footer-section p {
+    margin-bottom: 12px;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+.footer-section a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: var(--primary-color);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.page-header {
+    margin: 30px 0;
+}
+
+.page-header h1 {
+    color: var(--dark-color);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .intro-wrapper {
+        grid-template-columns: 0.7fr 1.2fr 2.5fr 1.2fr 0.7fr;
+        gap: 20px;
+        padding: 60px 20px;
+        max-height: 85vh;
+    }
+    
+    .intro-art-left .intro-art-img,
+    .intro-art-right .intro-art-img {
+        max-width: 100px;
+        max-height: 350px;
+    }
+    
+    .intro-illustration .intro-art-img {
+        max-width: 150px;
+        max-height: 350px;
+    }
+    
+    .intro-food-img {
+        max-height: 450px;
+        border-width: 10px;
+    }
+    
+    .intro-main-title {
+        font-size: 38px;
+    }
+    
+    .intro-content {
+        padding: 20px 15px;
+    }
+    
+    .dishes-carousel-wrapper {
+        padding: 0 30px;
+    }
+    
+    .dishes-carousel .dish-card {
+        min-width: calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        width: calc(50% - 10px);
+    }
+}
+
+/* Responsive - Mobile */
+/* Admin Responsive */
+@media (max-width: 1024px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .admin-menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 20px 15px;
+    }
+    
+    .admin-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .admin-header-left h1 {
+        font-size: 24px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .stat-card-header {
+        padding: 20px;
+    }
+    
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .stat-info h3 {
+        font-size: 28px;
+    }
+    
+    .admin-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .admin-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .admin-table-wrapper {
+        overflow-x: auto;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .admin-menu-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .admin-menu-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .admin-menu-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .admin-menu-content {
+        padding: 15px 0;
+    }
+    
+    .admin-menu-arrow {
+        display: none;
+    }
+    
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(62, 39, 35, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        padding: 20px;
+        gap: 15px;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-toggle {
+        display: block;
+    }
+    
+    .top-bar-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .top-bar-left {
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .hero {
+        padding: 80px 20px;
+        min-height: 100vh;
+    }
+    
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .hero-slogan {
+        font-size: 20px;
+    }
+    
+    .hero-description {
+        font-size: 16px;
+    }
+    
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    
+    .checkout-container,
+    .reservation-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .brand-text {
+        font-size: 16px;
+    }
+    
+    .brand-name {
+        font-size: 18px;
+    }
+    
+    .brand-subtitle {
+        font-size: 14px;
+    }
+    
+    .intro-section {
+        height: auto;
+        min-height: auto;
+        max-height: none;
+    }
+    
+    .intro-wrapper {
+        grid-template-columns: 1fr;
+        padding: 50px 15px;
+        gap: 25px;
+        height: auto;
+        max-height: none;
+    }
+    
+    .intro-art-left,
+    .intro-art-right {
+        display: none; /* Ẩn tranh Đông Hồ 2 bên trên mobile */
+    }
+    
+    .intro-content {
+        text-align: center;
+        padding: 20px 15px;
+        order: 2;
+    }
+    
+    .intro-main-title {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+    
+    .intro-divider {
+        margin: 15px auto;
+    }
+    
+    .intro-food-img {
+        border-width: 10px;
+        max-height: 400px;
+    }
+    
+    .intro-text {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+    
+    .intro-btn {
+        margin-top: 15px;
+        padding: 10px 30px;
+        font-size: 15px;
+    }
+    
+    .intro-image {
+        order: 1;
+    }
+    
+    .intro-illustration {
+        order: 3;
+    }
+    
+    .intro-illustration .intro-art-img {
+        max-width: 140px;
+        max-height: 300px;
+    }
+    
+    .features,
+    .popular-dishes {
+        min-height: auto;
+        padding: 60px 20px;
+    }
+    
+    .dishes-carousel-wrapper {
+        padding: 0 20px;
+    }
+    
+    .dishes-carousel .dish-card {
+        min-width: calc(100% - 10px);
+        max-width: calc(100% - 10px);
+        width: calc(100% - 10px);
+    }
+}
+
