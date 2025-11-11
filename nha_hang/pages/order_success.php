@@ -33,6 +33,10 @@ require_once '../includes/header.php';
 ?>
 
 <div class="container">
+    <div class="page-header">
+        <h1><i class="fas fa-check-circle"></i> Đặt hàng thành công</h1>
+    </div>
+
     <div class="success-container">
         <div class="success-icon">
             <i class="fas fa-check-circle"></i>

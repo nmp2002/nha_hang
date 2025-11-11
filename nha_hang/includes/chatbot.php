@@ -10,6 +10,7 @@
     </div>
     <div class="chatbot-body" id="chatbot-body">
         <div class="chatbot-messages" id="chatbot-messages"></div>
+        <div class="chatbot-quick" id="chatbot-quick" aria-hidden="false"></div>
         <form id="chatbot-form" class="chatbot-form">
             <input type="text" id="chatbot-input" placeholder="Hỏi về thực đơn, đặt bàn, giờ mở cửa..." autocomplete="off">
             <button type="submit">Gửi</button>

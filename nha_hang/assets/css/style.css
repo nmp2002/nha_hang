@@ -59,6 +59,11 @@
     --border-color: #e0d5c7;        /* Màu be nhẹ cho border */
     --shadow: 0 2px 15px rgba(62, 39, 35, 0.1);
     --shadow-lg: 0 5px 25px rgba(62, 39, 35, 0.15);
+    /* Layout / spacing */
+    --container-padding: 20px;
+    --card-radius: 10px;
+    --card-bg-start: #ffffff;
+    --card-bg-end: #fbfaf6;
 }
 
 body {
@@ -91,7 +96,7 @@ body.home-page {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
 }
 
 /* Top Bar */
@@ -364,6 +369,56 @@ body.home-page {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+/* Mobile navigation behaviour (works with assets/js/main.js) */
+@media (max-width: 992px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(62, 39, 35, 0.98);
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 20px 18px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 1200;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu > li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        padding: 10px 0;
+    }
+
+    .nav-menu a {
+        width: 100%;
+        color: white;
+        padding: 8px 0;
+    }
+
+    .nav-menu .dropdown-menu {
+        position: static;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        min-width: auto;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
 /* Hero Section */
 .hero {
     background: transparent;
@@ -391,7 +446,7 @@ body.home-page {
     z-index: 1;
     max-width: 900px;
     margin: 0 auto;
-    display: none; /* Ẩn tất cả nội dung chữ trong hero */
+    display: block; /* Hiển thị nội dung chữ trong hero */
 }
 
 .hero-text {
@@ -413,6 +468,26 @@ body.home-page {
     color: var(--accent-color);
     font-style: italic;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Tweak hero readability: add a subtle overlay for better contrast on busy backgrounds */
+.hero-overlay {
+    background: linear-gradient(180deg, rgba(62,39,35,0.45) 0%, rgba(62,39,35,0.25) 50%, rgba(62,39,35,0.45) 100%);
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 12px;
+        min-height: 50vh;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-slogan {
+        font-size: 16px;
+    }
 }
 
 .hero-description {
@@ -1909,6 +1984,114 @@ body:has(.auth-container) {
     overflow-y: auto;
     position: relative;
     border: 2px solid rgba(201, 125, 26, 0.2);
+}
+
+/* ==================================================
+   Unified card overrides - make component backgrounds
+   and spacing consistent across the site
+   ================================================== */
+.card-style,
+.menu-section,
+.feature-card,
+.menu-item,
+.dish-card,
+.auth-card,
+.checkout-form-section,
+.checkout-summary,
+.admin-section,
+.order-card,
+.stat-card,
+.cart-table,
+.empty-cart,
+.success-container,
+.modal-content,
+.admin-section-enhanced,
+.admin-menu-item {
+    /* Use clean, subtle background without repeating texture images for clarity */
+    background: linear-gradient(180deg, var(--card-bg-start), var(--card-bg-end));
+    background-image: none;
+    border-radius: var(--card-radius);
+    border: 1px solid rgba(224,213,199,0.6);
+    box-shadow: var(--shadow);
+}
+
+/* Small tweaks to keep spacing consistent inside cards */
+.menu-item-content,
+.dish-info,
+.stat-info,
+.admin-menu-content,
+.modal-content,
+.auth-form,
+.checkout-form-section,
+.checkout-summary {
+    padding: 20px;
+}
+
+/* Ensure footer bottom is visually separated and centered */
+.footer .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 18px;
+    text-align: center;
+    opacity: 0.95;
+}
+
+/* Remove busy background-image usage on small cards and lists to declutter */
+.feature-card,
+.menu-item,
+.dish-card,
+.auth-card,
+.checkout-form-section,
+.checkout-summary,
+.order-card,
+.stat-card,
+.admin-section,
+.admin-menu-item,
+.cart-table,
+.empty-cart,
+.success-container,
+.modal-content {
+    background-image: none !important;
+}
+
+/* Slightly tighten padding inside small cards for visual compactness */
+.menu-item-content,
+.dish-info,
+.stat-info,
+.admin-menu-content,
+.modal-content,
+.auth-form,
+.checkout-form-section,
+.checkout-summary {
+    padding: 16px;
+}
+
+/* Page wrapper and header spacing to keep layout consistent */
+.page-wrapper {
+    padding: 30px 0 60px; /* top/bottom spacing between nav and footer */
+    min-height: calc(100vh - 260px); /* rough viewport fill leaving header/footer */
+}
+
+.page-header {
+    margin: 8px 0 20px;
+    padding-bottom: 10px;
+}
+
+/* Ensure page headers inside card sections look consistent */
+.page-header h1, .section-title {
+    font-size: 28px;
+    color: var(--dark-color);
+    margin: 0 0 8px;
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding: 20px 0 40px;
+    }
+
+    .intro-wrapper {
+        grid-template-columns: 1fr;
+        padding: 30px 10px;
+    }
 }
 
 .close {

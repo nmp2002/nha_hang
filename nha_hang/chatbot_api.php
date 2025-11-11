@@ -107,6 +107,29 @@ VÍ DỤ CÂU TRẢ LỜI TỐT:
 }
 
 // Enhanced fallback rule-based/FAQ responses
+// Quick menu search: if user asks about a dish or menu item, try to find matches in DB
+function try_menu_search($db, $message_safe) {
+    // extract keywords - simple approach: words longer than 2 chars
+    preg_match_all('/\p{L}{2,}/u', $message_safe, $m);
+    $words = $m[0] ?? [];
+    if (count($words) < 1) return null;
+
+    // Build LIKE query using first two meaningful words
+    $terms = array_slice($words, 0, 3);
+    $placeholders = implode(' OR ', array_map(function($t){ return "name LIKE ?"; }, $terms));
+    $params = array_map(function($t){ return '%' . $t . '%'; }, $terms);
+    $sql = "SELECT id, name, price, image FROM menu_items WHERE is_available = 1 AND (" . $placeholders . ") LIMIT 8";
+    try {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($params);
+        $rows = $stmt->fetchAll();
+        if ($rows) return $rows;
+    } catch (Exception $e) {
+        return null;
+    }
+    return null;
+}
+
 $faq = [
     '/xin chào|chào|hello|hi/i' => '👋 Xin chào! Mình là trợ lý ảo của Cơm Quê Dượng Bầu. Mình có thể giúp gì cho bạn hôm nay? (Đặt bàn, xem thực đơn, giờ mở cửa...)',
     
@@ -140,7 +163,30 @@ foreach ($faq as $pattern => $answer) {
     }
 }
 
+// If not matched by FAQ, try menu search (helpful for queries like 'mực chiên' or 'thịt kho')
 if (!$matched) {
+    $db = getDB();
+    $matches = try_menu_search($db, $message_safe);
+    if ($matches) {
+        // build HTML reply listing matched items
+        $parts = ['📋 Mình tìm thấy một vài món phù hợp:'];
+        $suggestions = [];
+        foreach ($matches as $r) {
+            $img = !empty($r['image']) ? ('<img src="' . BASE_URL . $r['image'] . '" style="width:60px;height:60px;object-fit:cover;border-radius:6px;margin-right:8px;vertical-align:middle">') : '';
+            $parts[] = sprintf('<div style="padding:8px 0;display:flex;align-items:center">%s<strong>%s</strong> — <span style="color:#b8751a;font-weight:600">%s</span> <a href="%spages/menu.php#dish-%d" target="_blank" style="margin-left:8px">Xem</a></div>', $img, htmlspecialchars($r['name']), htmlspecialchars(formatCurrency($r['price'])), BASE_URL, $r['id']);
+            $suggestions[] = $r['name'];
+        }
+        $reply = implode('\n', $parts);
+        // return suggestions and an action to open reservation or show menu item maybe
+        echo json_encode(['success' => true, 'reply' => $reply, 'suggestions' => $suggestions]);
+        // log
+        try {
+            $stmt = $db->prepare('INSERT INTO chat_logs (user_id, username, message, reply, source) VALUES (?, ?, ?, ?, ?)');
+            $stmt->execute([$user_id, $username, $message_safe, $reply, 'menu_search']);
+        } catch (Exception $e) {}
+        exit;
+    }
+
     $reply = '😊 Mình là trợ lý ảo của Cơm Quê Dượng Bầu. Mình có thể giúp bạn về:<br>• Xem thực đơn 🍲<br>• Đặt bàn 📅<br>• Giờ mở cửa 🕐<br>• Địa chỉ & liên hệ 📍<br><br>Bạn cần hỗ trợ gì, cứ hỏi mình nhé! Hoặc gọi hotline <strong>076 537 1893</strong> để được tư vấn trực tiếp.';
 }
 

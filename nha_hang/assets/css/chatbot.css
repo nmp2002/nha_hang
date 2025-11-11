@@ -118,6 +118,30 @@
     scrollbar-color: #c97d1a #e0d5c7;
 }
 
+/* Quick reply buttons container */
+#chatbot-widget .chatbot-quick {
+    display: flex;
+    gap: 8px;
+    padding: 8px 16px 0 16px;
+    flex-wrap: wrap;
+}
+
+#chatbot-widget .chat-quick-btn {
+    background: linear-gradient(135deg, #fff, #fbfaf8);
+    border: 1px solid #e0d5c7;
+    color: var(--text-color, #2c1810);
+    padding: 6px 10px;
+    border-radius: 18px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+#chatbot-widget .chat-quick-btn:hover {
+    background: linear-gradient(135deg, #fff, #fff7ec);
+    border-color: rgba(201,125,26,0.3);
+}
+
 #chatbot-widget .chatbot-messages::-webkit-scrollbar {
     width: 6px;
 }

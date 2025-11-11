@@ -101,4 +101,8 @@ if (isLoggedIn()) {
     include_once __DIR__ . '/chatbot.php';
 }
 
+?>
+
+<main class="page-wrapper">
+
 
